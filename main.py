@@ -36,7 +36,7 @@ if url:
 
 if st.session_state.run:
     # Display the cleaned text
-    st.text_area("Cleaned Text", "\n".join(st.session_state.cleaned_text[:2]), height=300)
+    # st.write("\n".join(st.session_state.cleaned_text[:1]))
     
     # Initialize the clustering and semantic search class
     clustering_search = ClusteringAndSemanticSearch()
@@ -51,10 +51,10 @@ if st.session_state.run:
     query = st.text_input('Enter your query:')
     if query and st.button('Run Query'):
         # Find related sentences
-        related_sentences = clustering_search.find_related_sentences(query, st.session_state.cleaned_text)
+        most_similar_sentence,related_sentences = clustering_search.find_related_sentences(query, st.session_state.cleaned_text)
         
         # Use related sentences as context
-        context = " ".join(related_sentences[0:2])
+        context = " ".join(related_sentences[0:5])
         
         # Initialize the Gemini LLM
         gemini_llm = GeminiLLM()
@@ -63,6 +63,11 @@ if st.session_state.run:
         
         # Answer query using Gemini LLM
         answer = gemini_llm.run_extraction_chain(query, context)
-        st.write("Query Answer", answer, height=200)
+
+        st.write(f"Semantic search result: \n{most_similar_sentence}")
+
+        st.write(f"Sentence Hierarchy: \n {related_sentences[0:2]}")
+
+        st.write("Gemini Answer", answer, height=200)
     
     st.session_state.run = False

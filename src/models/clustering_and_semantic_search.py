@@ -37,4 +37,6 @@ class ClusteringAndSemanticSearch:
         related_sentences_indices = [i for i in range(len(sentences)) if self.clustering_model.labels_[i] == query_cluster]
         related_sentences_indices = sorted(related_sentences_indices, key=lambda i: similarity_scores[0][i], reverse=True)
         related_sentences = [sentences[i] for i in related_sentences_indices]
-        return related_sentences
+        most_similar_sentence = sentences[most_similar_index]
+        return most_similar_sentence, related_sentences
+

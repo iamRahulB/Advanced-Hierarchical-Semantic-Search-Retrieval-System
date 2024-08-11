@@ -16,7 +16,7 @@ class GeminiLLM:
 
     def run_extraction_chain(self, query, context):
         template = """
-        You are an AI model designed to answer questions based on the given context. Please focus on the context provided and ensure your answers are relevant and accurate. Do not provide any information that is not related to the context or the question asked. Stay within the topic at all times.
+        You are an AI model designed to answer questions based on the given context. Please focus on the context provided and ensure your answers are relevant and accurate.
 
 Context:{context}
 
