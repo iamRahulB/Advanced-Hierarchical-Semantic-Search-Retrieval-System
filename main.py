@@ -64,10 +64,10 @@ if st.session_state.run:
         # Answer query using Gemini LLM
         answer = gemini_llm.run_extraction_chain(query, context)
 
-        st.write(f"Semantic search result: \n{most_similar_sentence}")
+        st.write(f"Semantic search result: \n\n{most_similar_sentence}\n\n")
 
-        st.write(f"Sentence Hierarchy: \n {related_sentences[0:2]}")
+        st.write(f"Sentence Hierarchy: \n\n {related_sentences[0:2]}\n\n")
 
-        st.write("Gemini Answer", answer, height=200)
+        st.write(f"Gemini Answer: \n\n {answer}")
     
     st.session_state.run = False
